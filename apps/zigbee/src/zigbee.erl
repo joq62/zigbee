@@ -174,7 +174,6 @@ init([]) ->
 
 
 handle_call({call,Name,Function, Args}, _From, State) ->
-    
     Reply=case rpc:call(node(),lib_zigbee,get_num_map_module,[Name],5000) of
 	      {badrpc,Reason}->
 		  {error,["badrpc ",Reason,?MODULE,?LINE]};
@@ -243,6 +242,12 @@ handle_cast(Request, State) ->
 	  {stop, Reason :: normal | term(), NewState :: term()}.
 
 handle_info(timeout, State) ->  
+    
+        % to be removed used during test
+    {ok,HostName}=net:gethostname(),
+    ControllerNode=list_to_atom("ctrl"++"@"++HostName),
+    Pong=rpc:call(ControllerNode,controller,ping,[],5000),
+    ?LOG_NOTICE("Pong ",Pong),
     
      %% Set up logdir 
     file:make_dir(?MainLogDir),
