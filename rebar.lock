@@ -1,0 +1,8 @@
+[{<<"log">>,
+  {git,"https://github.com/joq62/log.git",
+       {ref,"6329c78d7a3f69957637bdf0e23872a2834d002c"}},
+  0},
+ {<<"rd">>,
+  {git,"https://github.com/joq62/rd.git",
+       {ref,"660946722279e021347c29744cd4dde87def87a2"}},
+  0}].

@@ -1,0 +1,1 @@
+-define(BuildPath,"_build/default/lib").

@@ -1,0 +1,29 @@
+-include("sender.hrl").
+
+-define(MainLogDir,"logs").
+-define(LocalLogDir,"log.logs").
+-define(LogFile,"test_logfile").
+-define(MaxNumFiles,10).
+-define(MaxNumBytes,100000).
+
+%%%% Log Api -----------------------------------------------------------------------------
+
+%% log:debug(Msg)
+%-define(LOG_DEBUG(Msg,Data),sd:cast(log,log,debug,[Msg,Data,?Sender])).
+-define(LOG_DEBUG(Msg,Data),log:debug(Msg,Data,?Sender)).
+-define(LOG2_DEBUG(Msg,Data),rd:call(log2,log2,debug,[Msg,Data,?Sender],5000)).
+
+%-define(LOG_NOTICE(Msg,Data),sd:cast(log,log,notice,[Msg,Data,?Sender])).
+-define(LOG_NOTICE(Msg,Data),log:notice(Msg,Data,?Sender)).
+
+-define(LOG2_NOTICE(Msg,Data),rd:call(log2,log2,notice,[Msg,Data,?Sender],5000)).
+
+%-define(LOG_WARNING(Msg,Data),sd:cast(log,log,warning,[Msg,Data,?Sender])).
+-define(LOG_WARNING(Msg,Data),log:warning(Msg,Data,?Sender)).
+
+-define(LOG2_WARNING(Msg,Data),rd:call(log2,log2,warning,[Msg,Data,?Sender],5000)).
+
+%-define(LOG_ALERT(Msg,Data),sd:cast(log,log,alert,[Msg,Data,?Sender])).
+-define(LOG_ALERT(Msg,Data),log:alert(Msg,Data,?Sender)).
+
+-define(LOG2_ALERT(Msg,Data),rd:call(log2,log2,alert,[Msg,Data,?Sender],5000)).
